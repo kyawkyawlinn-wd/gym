@@ -1,0 +1,29 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #38454D;
+}
+.login-card {
+    margin-top: 200px;
+}
+
+.login-card h2 {
+  color: #FEB900;
+}
+
+.login-card .form-label {
+  color: #FEB900;
+}
+
+.show {
+  color: #FEB900;
+  opacity: .8;
+}
+.login-card button {
+  color: #FEB900;
+}
+
