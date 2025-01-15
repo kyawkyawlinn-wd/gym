@@ -22,6 +22,7 @@ function create_table($mysqli)
           `age` INT NOT NULL, 
           `password` VARCHAR(60) NOT NULL, 
           `email` VARCHAR(80) NOT NULL, 
+          `about` TEXT NOT NULL,
             PRIMARY KEY(`id`) )";
             if(!$mysqli->query($sql)) {
               return false;
