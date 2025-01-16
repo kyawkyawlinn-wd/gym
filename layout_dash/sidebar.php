@@ -42,6 +42,15 @@
               </ul>
             </li>
             
+            <li class="menu-header">Certification</li>
+            <li class="dropdown">
+              <a href="#" class="nav-link has-dropdown"><i class="far fa-user"></i> <span>Certification</span></a>
+              <ul class="dropdown-menu">
+                <li><a href="../admin/add_certification.php">Add Certification</a></li> 
+                <li><a href="../admin/certification_list.php">Certification List</a></li> 
+              </ul>
+            </li>
+
           </ul>
 
           <div class="mt-4 mb-4 p-3 hide-sidebar-mini">

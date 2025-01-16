@@ -8,6 +8,16 @@
       $error = "";
 ?>
 <?php 
+  if(isset($_GET['id'])) {
+    $member_id = $_GET['id'];
+    $member = get_member_with_id($mysqli, $member_id);
+    $name = $member['name'];
+    $email = $member['email'];
+    $age = $member['age'];
+    $phone = $member['phone'];
+  }
+?>
+<?php 
     if(isset($_POST['name'])) {
       $name = $_POST['name'];
       $email = $_POST['email'];
@@ -15,7 +25,7 @@
       $phone = $_POST['phone'];
     
 
-      if($name === "") {
+      if($name == "") {
         $nameErr = "Please fill name!";
         $error = "err";
       } else {
@@ -24,7 +34,7 @@
         }
       } 
 
-      if($email === "" ) {
+      if($email == "" ) {
         $emailErr = "Please fill email!";
         $error = "err";
       } else {
@@ -33,7 +43,7 @@
         }
       }
 
-      if($phone === "") {
+      if($phone == "") {
         $phoneErr = "Please fill phone!";
         $error = "err";
       } else {
@@ -42,7 +52,7 @@
         }
       }
 
-      if($age === "") {
+      if($age == "") {
         $ageErr = "Please fill Age!";
         $error = "err";
       } else {
@@ -51,9 +61,21 @@
         }
       }  
 
-      if(!$error) {
+      if($error == "") {
+        if(isset($_GET['id'])) {
+          $member_id = $_GET['id'];
+          $status = update_member($mysqli, $member_id, $member_name, $age, $email, $phone);    
+          if($status == true) {
+          echo "<script>location.replace('./member_list.php')</script>";
+          } else {
+            echo "Something wrong!";
+          }
+        } else {      
         $success = add_member($mysqli, $name, $age, $email,  $phone);
-        var_dump($success);
+        if($success == true){
+          echo "<script>location.replace('./member_list.php')</script>";
+        }
+      }
       }
     }
 ?>
@@ -61,7 +83,11 @@
       <div class="main-content">
           <div class="card">
                   <div class="card-header">
-                    <h4>Member Form</h4>
+                  <?php if (isset($_GET['id'])) { ?>
+                      <h4>Update Member</h4>
+                    <?php } else { ?>
+                        <h4>Member Form</h4>
+                    <?php } ?>
                   </div>
                   <form method="post">
                     <div class="card-body">                    
@@ -87,7 +113,11 @@
                       </div>                    
                     </div>
                     <div class="card-footer">
-                      <button type="submit" class="btn btn-primary">Submit</button>
+                      <?php if (isset($_GET['id'])) { ?>
+                         <button type="submit" class="btn btn-info">Update</button>
+                      <?php } else { ?>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                      <?php } ?>
                     </div>
                   </form>
           </div>

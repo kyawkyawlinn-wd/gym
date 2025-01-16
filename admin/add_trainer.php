@@ -1,8 +1,8 @@
 <?php require_once("../layout_dash/header.php") ?>
   <div id="app">
     <!-- <div class="main-wrapper main-wrapper-1"> -->
-<?php //require_once("../layout_dash/navbar.php") ?>
-<?php //require_once("../layout_dash/sidebar.php") ?>
+<?php require_once("../layout_dash/navbar.php") ?>
+<?php require_once("../layout_dash/sidebar.php") ?>
 <?php $name = $nameErr = $email = $emailErr = $age = $ageErr = "";
       $password = $passwordErr =  $experience = $experienceErr = "";
       $error = "";
@@ -78,7 +78,7 @@
       
       if($error == "") {
         if(isset($_GET['trainer_id'])) {
-          // $trainer_id = $_GET['trainer_id'];
+          $trainer_id = $_GET['trainer_id'];
           $status = update_admin($mysqli, $trainer_id, $name, $experience, $age, $trainer_password, $email, $about);
           if($status == true) {
           echo "<script>location.replace('./trainer_list.php')</script>";

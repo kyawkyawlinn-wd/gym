@@ -30,7 +30,7 @@ function create_table($mysqli)
             
             $sql = "CREATE TABLE IF NOT EXISTS `training_class_types`(
                    `id` INT NOT NULL AUTO_INCREMENT, 
-                   `training_class_name` VARCHAR(225) NOT NULL,
+                   `class_name` VARCHAR(225) NOT NULL,
                    `max_people` INT NOT NULL, 
                     PRIMARY KEY(`id`) )";
                     if(!$mysqli->query($sql)) {
