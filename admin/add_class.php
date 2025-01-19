@@ -8,10 +8,19 @@
       $error = "";
 ?>
 <?php 
+    if(isset($_GET['id'])) {
+      $trainingClassId = $_GET['id'];
+      $trainingClass = get_training_class_with_id($mysqli, $trainingClassId);
+      $name = $trainingClass['class_name'];
+      $max = $trainingClass['max_people'];
+      $description = $trainingClass['description'];
+    }
+?>
+<?php 
     if(isset($_POST['name'])) {
       $name = $_POST['name'];
       $max = $_POST['max'];
-
+      $description = $_POST['description'];
 
       if($name == "") {
         $nameErr = "Please fill name!";
@@ -30,20 +39,30 @@
           $maxErr = "Please fill number only!";
         }
       }  
+
+      if($description == "") {
+        $descriptionErr = "Please fill description!";
+        $error = "err";
+      } else {
+        if(!preg_match("/^[a-zA-Z\s]+$/" , $description)) {
+          $descriptionErr = "Wrong description!";
+        }
+      } 
       
       if($error == "") {
         if(isset($_GET['id'])) {
-          $trainer_id = $_GET['id'];
-          $status = update_admin($mysqli, $trainer_id, $name, $experience, $age, $trainer_password, $email, $about);
+          $trainingClassId = $_GET['id'];
+          $status = update_training_class($mysqli, $trainingClassId, $name, $max, $description);
+          var_dump($status);
           if($status == true) {
-          echo "<script>location.replace('./trainer_list.php')</script>";
+          echo "<script>location.replace('./class_list.php')</script>";
           } else {
             echo "Something wrong!";
           }
         } else {      
         $success = add_class($mysqli, $name, $max, $description);
         if($success){
-          echo "<script>location.replace('./member_list.php')</script>";
+          echo "<script>location.replace('./class_list.php')</script>";
         }
       }
       }
@@ -71,11 +90,17 @@
                       </div>  
                       <div class="form-group">
                       <label>Description</label>
-                      <textarea class="form-control" name="descrtption" placeholder="Description"></textarea>
+                      <textarea class="form-control" name="description" placeholder="Description"><?= $description ?></textarea>
+                      <div class="text-danger"><?= $descriptionErr ?></div>
                     </div>                 
                     </div>
                     <div class="card-footer">
-                      <button type="submit" class="btn btn-primary">Submit</button>
+                     <?php if (isset($_GET['id'])) { ?>
+                         <button type="submit" class="btn btn-info">Update</button>
+                      <?php } else { ?>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                      <?php } ?>
+                    </div>
                     </div>
                   </form>
           </div>

@@ -3,6 +3,7 @@
 <?php require_once("../stroage/member_crud.php") ?>
 <?php require_once("../stroage/certification_crud.php") ?>
 <?php require_once("../stroage/class_crud.php") ?>
+<?php require_once("../stroage/trainer_certification_crud.php") ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>

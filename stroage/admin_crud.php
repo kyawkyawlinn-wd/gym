@@ -8,7 +8,7 @@ function add_admin($mysqli, $trainer_name, $exp, $age, $password, $email, $about
 
 function get_admin($mysqli)
 {
-  $sql = "SELECT * FROM `trainers`";
+  $sql = "SELECT * FROM `trainers` WHERE `status`=0";
   return $mysqli->query($sql);
 };
  
@@ -32,7 +32,7 @@ function update_admin($mysqli, $id, $trainer_name, $exp, $age , $password, $emai
 };
 
 function delete_admin($mysqli, $id)
-{
-  $sql = "DELETE FROM `trainers` WHERE `id`=$id";
+{ 
+  $sql = "UPDATE `trainers` SET `status`=1 WHERE `id`='$id'";
   return $mysqli->query($sql);
 };

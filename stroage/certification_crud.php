@@ -7,7 +7,7 @@ function add_certification($mysqli, $certification_name, $place){
 
 function get_certification($mysqli)
 {
-  $sql = "SELECT * FROM `certifications`";
+  $sql = "SELECT * FROM `certifications` WHERE `status`=0";
   return $mysqli->query($sql);
 };
  
@@ -24,8 +24,14 @@ function update_certification($mysqli, $id, $certification_name, $place)
   return $mysqli->query($sql);
 };
 
-function delete_certifications($mysqli, $id)
+// function delete_certifications($mysqli, $id)
+// {
+//   $sql = "DELETE FROM `certifications` WHERE `id`=$id";
+//   return $mysqli->query($sql);
+// };
+
+function delete_certification($mysqli, $id)
 {
-  $sql = "DELETE FROM `certifications` WHERE `id`=$id";
+  $sql = "UPDATE `certifications` SET `status`=1 WHERE `id`=$id"; 
   return $mysqli->query($sql);
-};
+}

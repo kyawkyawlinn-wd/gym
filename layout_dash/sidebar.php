@@ -51,6 +51,24 @@
               </ul>
             </li>
 
+            <li class="menu-header">Trainer Certification</li>
+            <li class="dropdown">
+              <a href="#" class="nav-link has-dropdown"><i class="far fa-user"></i> <span>Trainer Certification</span></a>
+              <ul class="dropdown-menu">
+                <li><a href="../admin/add_trainer_certification.php">Add Certification</a></li> 
+                <li><a href="../admin/trainer_certification_list.php">Certification List</a></li> 
+              </ul>
+            </li>
+
+            <li class="menu-header">Training Schedule</li>
+            <li class="dropdown">
+              <a href="#" class="nav-link has-dropdown"><i class="far fa-user"></i> <span>Training Schedule</span></a>
+              <ul class="dropdown-menu">
+                <li><a href="../admin/add_training.php">Add Training</a></li> 
+                <li><a href="../admin/training_list.php">Training List</a></li> 
+              </ul>
+            </li>
+
           </ul>
 
           <div class="mt-4 mb-4 p-3 hide-sidebar-mini">

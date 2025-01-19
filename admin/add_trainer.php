@@ -3,7 +3,7 @@
     <!-- <div class="main-wrapper main-wrapper-1"> -->
 <?php require_once("../layout_dash/navbar.php") ?>
 <?php require_once("../layout_dash/sidebar.php") ?>
-<?php $name = $nameErr = $email = $emailErr = $age = $ageErr = "";
+<?php $name = $nameErr = $email = $emailErr = $age = $ageErr = $about = $aboutErr = "";
       $password = $passwordErr =  $experience = $experienceErr = "";
       $error = "";
       $successmsg = "";
@@ -28,7 +28,7 @@
       $experience = $_POST['experience'];
       $password = $_POST['password'];
       $about = $_POST['about'];
-      $trainer_password = password_hash($password, PASSWORD_BCRYPT);
+      
 
       if($name == "") {
         $nameErr = "Please fill name!";
@@ -75,6 +75,16 @@
         $error = "err";
         }
       }  
+
+      if($about == "") {
+        $aboutErr = "Please fill about!";
+        $error = "err";
+      } else {
+        if(!preg_match("/^[a-zA-Z\s]+$/" , $about)) {
+          $aboutErr = "Something Wrong!";
+        $error = "err";
+        }
+      }
       
       if($error == "") {
         if(isset($_GET['trainer_id'])) {
@@ -86,9 +96,9 @@
             echo "Something wrong!";
           }
         } else {
-        
+        $trainer_password = password_hash($password, PASSWORD_BCRYPT);
         $success = add_admin($mysqli, $name, $experience, $age, $trainer_password, $email, $about);
-        if($success){
+        if($success == true){
           echo "<script>location.replace('./trainer_list.php')</script>";
         }
       }
@@ -135,6 +145,10 @@
                         <input type="text" class="form-control" id="experience" name="experience" placeholder="Experience" value="<?= $experience ?>">
                         <div class="text-danger"><?= $experienceErr ?></div>
                       </div> 
+                      <div class="form-group">
+                      <label>Personal Description</label>
+                      <textarea class="form-control" name="about" placeholder="Description"><?= $about ?></textarea>
+                    </div>
                     </div>    
                     <div class="card-footer">
                       <?php if (isset($_GET['trainer_id'])) { ?>
@@ -147,5 +161,4 @@
           </div>
       </div>
       
-
 <?php require_once("../layout_dash/footer.php") ?>

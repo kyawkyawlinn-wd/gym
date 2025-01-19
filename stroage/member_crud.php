@@ -8,7 +8,7 @@ function add_member($mysqli, $member_name,  $age, $email, $phone )
 
 function get_member($mysqli)
 {
-  $sql = "SELECT * FROM `members`";
+  $sql = "SELECT * FROM `members` WHERE `status`=0";
   return $mysqli->query($sql);
 };
 
@@ -34,6 +34,7 @@ function update_member($mysqli, $id, $member_name, $age, $email, $phone)
 
 function delete_member($mysqli, $id)
 {
-  $sql = "DELETE FROM `members` WHERE `id`=$id";
+  $sql = "UPDATE `members` SET `status`=1 WHERE `id`=$id";
   return $mysqli->query($sql);
 };
+

@@ -1,8 +1,8 @@
 <?php require_once("../layout_dash/header.php") ?>
   <div id="app">
     <!-- <div class="main-wrapper main-wrapper-1"> -->
-<?php require_once("../layout_dash/navbar.php") ?>
-<?php require_once("../layout_dash/sidebar.php") ?>
+<?php //require_once("../layout_dash/navbar.php") ?>
+<?php //require_once("../layout_dash/sidebar.php") ?>
 <?php $name = $nameErr = $email = $emailErr = $age = $ageErr = "";
       $phone = $phoneErr = "";
       $error = "";

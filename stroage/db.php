@@ -32,6 +32,7 @@ function create_table($mysqli)
                    `id` INT NOT NULL AUTO_INCREMENT, 
                    `class_name` VARCHAR(225) NOT NULL,
                    `max_people` INT NOT NULL, 
+                   `description` VARCHAR(225) NOT NULL,
                     PRIMARY KEY(`id`) )";
                     if(!$mysqli->query($sql)) {
                         return false;
@@ -39,6 +40,8 @@ function create_table($mysqli)
 
    $sql = "CREATE TABLE IF NOT EXISTS `training_schedules`(
           `id` INT NOT NULL AUTO_INCREMENT, 
+          `start_time` TIME NOT NULL,
+          `end_time` TIME NOT NULL,
           `trainer_id` INT NOT NULL,
           `training_class_id` INT NOT NULL, 
           `fees` INT NOT NULL, 
@@ -55,7 +58,7 @@ function create_table($mysqli)
                      `name` VARCHAR(225) NOT NULL, 
                      `age` INT NOT NULL,
                      `email` VARCHAR(80) NOT NULL, 
-                     `phone_number` INT NOT NULL ,
+                     `phone` VARCHAR(30) NOT NULL ,
                       PRIMARY KEY(`id`) )";
                       if(!$mysqli->query($sql)) {
                           return false;
@@ -88,7 +91,7 @@ function create_table($mysqli)
                          `cretification_id` INT NOT NULL,
                          `trainer_id` INT NOT NULL, 
                          PRIMARY KEY(`id`),
-                         FOREIGN KEY(`cretification_id`) REFERENCES `cretifications`(`id`),
+                         FOREIGN KEY(`cretification_id`) REFERENCES `certifications`(`id`),
                          FOREIGN KEY(`trainer_id`) REFERENCES `trainers`(`id`))";
                          if(!$mysqli->query($sql)) {
                             return false;
