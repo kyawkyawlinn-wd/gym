@@ -3,7 +3,7 @@
 <?php 
 $result = get_admin($mysqli);
 if(!$result){
-    add_admin($mysqli,"super trainer",10,33,'super','super@gmail.com');
+    add_admin($mysqli,"super trainer",10,33,'super','super@gmail.com',"hello");
 }
 ?>
 <?php 
@@ -23,11 +23,9 @@ if(isset($_POST['email'])){
     }
     if($emailErr == "" && $pwdErr == ""){
         $user = get_admin_email($mysqli , $email );
-        
         if(!$user) {
             $emailErr = "User does't exists";
         }else {
-
             if (password_verify($password, $user['password'])) {
                 setcookie("user", json_encode($user), time() + 1000 * 60 * 60 * 24 * 14, "/");
                 header("Location:./admin/index.php");
@@ -80,7 +78,6 @@ if(isset($_POST['email'])){
 
             <div class="card card-primary">
               <div class="card-header"><h4>Login</h4></div>
-
               <div class="card-body">
                 <form method="POST" action="#" class="needs-validation" novalidate="">
                   <div class="form-group">
@@ -90,23 +87,24 @@ if(isset($_POST['email'])){
                       Please fill in your email
                     </div>
                   </div>
-
+                  
                   <div class="form-group">
                     <div class="d-block">
-                    	<label for="password" class="control-label">Password</label>
-
+                      <label for="password" class="control-label">Password</label>
+                      
                     </div>
                     <input id="password" type="password" class="form-control" name="password" tabindex="2" required>
                     <div class="invalid-feedback">
                       please fill in your password
                     </div>
                   </div>
-
+                  
                   <div class="form-group">
                     <div class="custom-control custom-checkbox">
                       <input type="checkbox" name="remember" class="form-check-input" tabindex="3" id="check">
                       <label class="form-check-label show" for="check">Show Password</label>
                     </div>
+                    <?php if(isset($_GET['invalid'])){ ?><span class="text-danger text-center"><?= $_GET['invalid'] ?></span><?php } ?>
                   </div>
 
                   <!-- <div class="form-group">

@@ -17,7 +17,7 @@
       $age = $trainer['age'];
       $experience = $trainer['exp'];
       $about = $trainer['about'];
-      $oldPassword = $trainer['password'];
+      $password = $trainer['password'];
     }
 ?>
 <?php 
@@ -28,7 +28,6 @@
       $experience = $_POST['experience'];
       $password = $_POST['password'];
       $about = $_POST['about'];
-      
 
       if($name == "") {
         $nameErr = "Please fill name!";
@@ -79,17 +78,13 @@
       if($about == "") {
         $aboutErr = "Please fill about!";
         $error = "err";
-      } else {
-        if(!preg_match("/^[a-zA-Z\s]+$/" , $about)) {
-          $aboutErr = "Something Wrong!";
-        $error = "err";
-        }
       }
       
       if($error == "") {
         if(isset($_GET['trainer_id'])) {
           $trainer_id = $_GET['trainer_id'];
-          $status = update_admin($mysqli, $trainer_id, $name, $experience, $age, $trainer_password, $email, $about);
+          $oldPassword = password_hash($password, PASSWORD_BCRYPT);
+          $status = update_admin($mysqli, $trainer_id, $name, $experience, $age, $oldPassword, $email, $about);
           if($status == true) {
           echo "<script>location.replace('./trainer_list.php')</script>";
           } else {
@@ -126,7 +121,7 @@
                         </div>
                         <div class="form-group col-md-6">
                           <label for="password">Password</label>
-                          <input type="password" class="form-control" id="password" name="password" placeholder="Password" value="<?= $password ?>">
+                          <input type="password" class="form-control" id="password" name="password" placeholder="Password" >
                           <div class="text-danger"><?= $passwordErr ?></div>
                         </div>
                       </div>

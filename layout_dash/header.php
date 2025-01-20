@@ -4,6 +4,21 @@
 <?php require_once("../stroage/certification_crud.php") ?>
 <?php require_once("../stroage/class_crud.php") ?>
 <?php require_once("../stroage/trainer_certification_crud.php") ?>
+<?php require_once("../stroage/training_schedule_crud.php") ?>
+<?php require_once("../stroage/member_schedule_crud.php") ?>
+<?php 
+
+  $user = json_decode($_COOKIE["user"], true);
+  if (!$user) {
+      header("Location:../index.php?invalid=Please login first!");
+  } 
+   
+  if (isset($_POST["logout"])) {
+      setcookie("user", "", -1, "/");
+      header("location:../index.php");
+  }
+  
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>

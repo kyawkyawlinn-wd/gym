@@ -1,8 +1,8 @@
 <?php require_once("../layout_dash/header.php") ?>
   <div id="app">
     <!-- <div class="main-wrapper main-wrapper-1"> -->
-<?php //require_once("../layout_dash/navbar.php") ?>
-<?php //require_once("../layout_dash/sidebar.php") ?>
+<?php require_once("../layout_dash/navbar.php") ?>
+<?php require_once("../layout_dash/sidebar.php") ?>
 <?php $name = $nameErr = $email = $emailErr = $age = $ageErr = "";
       $phone = $phoneErr = "";
       $error = "";
@@ -15,16 +15,17 @@
     $email = $member['email'];
     $age = $member['age'];
     $phone = $member['phone'];
+
   }
-?>
+  ?>
 <?php 
     if(isset($_POST['name'])) {
       $name = $_POST['name'];
       $email = $_POST['email'];
       $age = $_POST['age'];
       $phone = $_POST['phone'];
-    
-
+      
+      
       if($name == "") {
         $nameErr = "Please fill name!";
         $error = "err";
@@ -33,7 +34,7 @@
           $nameErr = "Wrong Name!";
         }
       } 
-
+      
       if($email == "" ) {
         $emailErr = "Please fill email!";
         $error = "err";
@@ -42,7 +43,7 @@
           $emailErr = "Wrong Email!";
         }
       }
-
+      
       if($phone == "") {
         $phoneErr = "Please fill phone!";
         $error = "err";
@@ -51,7 +52,7 @@
           $phoneErr = "Please fill number only!";
         }
       }
-
+      
       if($age == "") {
         $ageErr = "Please fill Age!";
         $error = "err";
@@ -60,20 +61,20 @@
           $ageErr = "Please fill number only!";
         }
       }  
-
+      
       if($error == "") {
         if(isset($_GET['id'])) {
           $member_id = $_GET['id'];
-          $status = update_member($mysqli, $member_id, $member_name, $age, $email, $phone);    
+          $status = update_member($mysqli, $member_id, $name, $age, $email, $phone);    
           if($status == true) {
-          echo "<script>location.replace('./member_list.php')</script>";
+            echo "<script>location.replace('./member_list.php')</script>";
           } else {
             echo "Something wrong!";
           }
         } else {      
         $success = add_member($mysqli, $name, $age, $email,  $phone);
         if($success == true){
-          echo "<script>location.replace('./member_list.php')</script>";
+           echo "<script>location.replace('./member_list.php')</script>";
         }
       }
       }

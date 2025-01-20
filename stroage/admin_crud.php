@@ -1,7 +1,7 @@
 <?php 
 
-function add_admin($mysqli, $trainer_name, $exp, $age, $password, $email, $about){
-    // $hashed = password_hash($password,PASSWORD_BCRYPT);
+function add_admin($mysqli, $trainer_name, $exp, $age, $password, $email, $about)
+{
     $sql = "INSERT INTO `trainers`(`trainer_name`,`exp`,`age`,`password`,`email`, `about`) VALUES ('$trainer_name', $exp, $age, '$password', '$email', '$about')";
     return $mysqli->query($sql);
 }; 

@@ -1,4 +1,11 @@
-
+<?php require_once("./stroage/db.php") ?>
+<?php require_once("./stroage/admin_crud.php") ?>
+<?php require_once("./stroage/member_crud.php") ?>
+<?php require_once("./stroage/certification_crud.php") ?>
+<?php require_once("./stroage/class_crud.php") ?>
+<?php require_once("./stroage/trainer_certification_crud.php") ?>
+<?php require_once("./stroage/training_schedule_crud.php") ?>
+<?php require_once("./stroage/member_schedule_crud.php") ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -52,13 +59,13 @@
 
       <nav id="navmenu" class="navmenu">
         <ul>
-          <li><a href="index.php" class="active">Home</a></li>
+          <li><a href="home.php" class="active">Home</a></li>
           <li><a href="about.php">About</a></li>
           <li><a href="services.php">Services</a></li>
           <li><a href="projects.php">Projects</a></li>
           <li><a href="blog.php">Blog</a></li>
-          <li class="dropdown"><a href="#"><span>Dropdown</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
-            <ul>
+          <!-- <li class="dropdown"><a href="#"><span>Dropdown</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a> -->
+            <!-- <ul>
               <li><a href="#">Dropdown 1</a></li>
               <li class="dropdown"><a href="#"><span>Deep Dropdown</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
                 <ul>
@@ -72,9 +79,8 @@
               <li><a href="#">Dropdown 2</a></li>
               <li><a href="#">Dropdown 3</a></li>
               <li><a href="#">Dropdown 4</a></li>
-            </ul>
-          </li>
-          <li><a href="contact.html">Contact</a></li>
+            </ul> -->
+          <!-- </li> -->
         </ul>
         <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
       </nav>

@@ -17,13 +17,15 @@
   <?php
   if (isset($_POST['trainer_id'])) {
     $trainer_id = $_POST['trainer_id'];
-
     if(count($_POST)>1){
       foreach ($_POST as $key => $value) {
         if($key != 'trainer_id'){
           add_trainer_certification($mysqli,$value,$trainer_id);
         }
       }
+      echo "<script>location.replace('./trainer_certification_list.php')</script>";
+  die();
+
     }else{
       $error = "Select at lease one certification!";
     }   
@@ -55,12 +57,11 @@
 
           <label>Certifications</label>
           <div class="d-flex">
-
             <?php $certifications = get_certification($mysqli);
             while ($certification = $certifications->fetch_assoc()) {
             ?>
               <div class="custom-control custom-radio">
-                <input type="radio" name="certification<?= $certification['id'] ?>"  value="<?= $certification['id'] ?>" class="custom-control-input" id="customCheck<?= $certification['id'] ?>">
+                <input type="radio" name="certification<?= $certification['id'] ?>"  value="<?= $certification['id'] ?>" class="custom-control-input custom_radio" id="customCheck<?= $certification['id'] ?>">
                 <label class="custom-control-label mr-2" for="customCheck<?= $certification['id'] ?>"><?= $certification['certification_name'] ?></label>
               </div>
             <?php } ?>
