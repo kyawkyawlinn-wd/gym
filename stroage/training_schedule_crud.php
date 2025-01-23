@@ -1,28 +1,37 @@
-<?php 
+<?php
 function add_training_schedule($mysqli, $start_time, $end_time, $trainer_id, $training_class_id, $fees)
 {
   try {
 
     $sql = "INSERT INTO `training_schedules`(`start_time`, `end_time`, `trainer_id`, `training_class_id`, `fees`) VALUES ('$start_time', '$end_time', $trainer_id, $training_class_id, $fees)";
-     $mysqli->query($sql);
-     return true;
-  }catch(Exception $e){
+    $mysqli->query($sql);
+    return true;
+  } catch (Exception $e) {
     var_dump($e);
     return false;
   }
 }
 
-function get_training_schedule($mysqli) 
+function get_training_schedule($mysqli)
 {
   $sql = "SELECT `trainers`.`trainer_name`, `training_class_types`.`class_name`, `training_schedules`.`fees`, `training_schedules`.`start_time` AS `start`, `training_schedules`.`end_time` AS `end`, `training_schedules`.`id` FROM `training_schedules` INNER JOIN `training_class_types` ON `training_class_types`.`id`=`training_schedules`.`training_class_id` INNER JOIN `trainers` ON `trainers`.`id`=`training_schedules`.`trainer_id` WHERE `training_schedules`.`status`=0";
   return $mysqli->query($sql);
 }
 
-function get_training_schedule_with_id($mysqli, $id) 
+function get_training_schedule_with_id($mysqli, $id)
 {
   $sql = "SELECT `trainers`.`id` AS `trainer_id`,`training_class_types`.`id` AS `class_id`,`trainers`.`trainer_name`, `training_class_types`.`class_name`, `training_schedules`.`fees`, `training_schedules`.`start_time` AS `start`, `training_schedules`.`end_time` AS `end`, `training_schedules`.`id` FROM `training_schedules` INNER JOIN `training_class_types` ON `training_class_types`.`id`=`training_schedules`.`training_class_id` INNER JOIN `trainers` ON `trainers`.`id`=`training_schedules`.`trainer_id` WHERE `training_schedules`.`id`=$id";
   $result = $mysqli->query($sql);
   return $result->fetch_assoc();
+}
+
+function get_trainer_details_with_id($mysqli, $id)
+{
+  $sql = "SELECT `trainers`.`trainer_name`, `trainers`.`email`, `trainers`.`exp`, `trainers`.`age`,`training_class_types`.`class_name`,
+  GROUP_CONCAT(`certifications`.`certification_name` SEPARATOR ', ') AS `certification_names`
+  FROM `trainers` INNER JOIN `training_schedules` ON `training_schedules`.`trainer_id` = `trainers`.`id` INNER JOIN `training_class_types` on `training_class_types`.`id` = `training_schedules`.`training_class_id` INNER JOIN `trainer_certifications` ON `trainers`.`id` = `trainer_certifications`.`trainer_id` INNER JOIN `certifications` ON `certifications`.`id` = `trainer_certifications`.`certification_id` WHERE `trainers`.`id` = $id";
+  $status = $mysqli->query($sql);
+  return $status->fetch_assoc();
 }
 
 function update_training_schedule($mysqli, $id, $start_time, $end_time, $trainer_id, $training_class_id, $fees)

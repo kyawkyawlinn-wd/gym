@@ -41,7 +41,7 @@
           <div href="#" class="list-group-item list-group-item-action flex-column align-items-start">
             <div class="d-flex w-100 justify-content-between">
               <h5 class="mb-1"><?= $trainer['trainer_name'] ?></h5>
-              <small><?= $trainer['exp']?> years</small>
+              <small><?= $trainer['exp']?> exp years</small>
             </div>
             <p class="mb-1"><?= $trainer['about']?></p>
             <small><?= $trainer['age']?> years old.</small> 

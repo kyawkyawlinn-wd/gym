@@ -66,7 +66,7 @@
       }
 
       if($age == "") {
-        $ageErr = "Please fill Age!";
+        $ageErr = "Please fill age!";
         $error = "err";
       } else {
         if(!preg_match("/^\d+$/", $age)) {
@@ -76,7 +76,7 @@
       }  
 
       if($about == "") {
-        $aboutErr = "Please fill about!";
+        $aboutErr = "Please fill description!";
         $error = "err";
       }
       
@@ -143,6 +143,7 @@
                       <div class="form-group">
                       <label>Personal Description</label>
                       <textarea class="form-control" name="about" placeholder="Description"><?= $about ?></textarea>
+                      <div class="text-danger"><?= $aboutErr ?></div>
                     </div>
                     </div>    
                     <div class="card-footer">

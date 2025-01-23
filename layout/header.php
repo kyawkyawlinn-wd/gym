@@ -59,11 +59,11 @@
 
       <nav id="navmenu" class="navmenu">
         <ul>
-          <li><a href="home.php" class="active">Home</a></li>
+          <li><a href="home.php">Home</a></li>
           <li><a href="about.php">About</a></li>
           <li><a href="services.php">Services</a></li>
-          <li><a href="projects.php">Projects</a></li>
-          <li><a href="blog.php">Blog</a></li>
+          <li><a href="projects.php">Trainers</a></li>
+          <!-- <li><a href="blog.php">Blog</a></li> -->
           <!-- <li class="dropdown"><a href="#"><span>Dropdown</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a> -->
             <!-- <ul>
               <li><a href="#">Dropdown 1</a></li>
